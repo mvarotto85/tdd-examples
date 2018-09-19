@@ -10,13 +10,10 @@ public class LRUCacheTests {
 
     private LRUCache<String, String> lruCache;
 
-    @Before
-    public void setUp() throws Exception {
-        lruCache = new LRUCache<>();
-    }
 
     @Test
     public void shouldBeAbleToAddNewKey() {
+        lruCache = new LRUCache<>(1);
         String expectedKey = "key";
         String expectedValue = "value";
 
@@ -26,10 +23,10 @@ public class LRUCacheTests {
     }
 
 
+
     @Test
     public void shouldRemoveLeastRecentlyUsedKeyWhenExceedCapacity() {
-        lruCache.setCapacity(4);
-
+        lruCache = new LRUCache<>(4);
         lruCache.add("k1","v1");
         lruCache.add("k2","v2");
         lruCache.add("k3","v3");
@@ -37,13 +34,14 @@ public class LRUCacheTests {
 
         assertEquals(4,lruCache.keyCardinality());
 
+        lruCache.get("k1");
+
         lruCache.add("k5","v5");
 
         assertEquals(4,lruCache.keyCardinality());
         assertTrue(lruCache.containsKey("k5"));
-        assertFalse(lruCache.containsKey("k1"));
-
-
+        assertTrue(lruCache.containsKey("k1"));
+        assertFalse(lruCache.containsKey("k2"));
 
     }
 }
