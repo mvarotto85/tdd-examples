@@ -1,9 +1,16 @@
 package it.tdd.devclass.cache;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache<K, V> {
+    @Getter
+    @Setter
+    private int capacity;
+
     Map<K,V> cache = new HashMap<>();
 
     public void add(K k, V v) {
@@ -12,5 +19,13 @@ public class LRUCache<K, V> {
 
     public V get(K k) {
         return cache.get(k);
+    }
+
+    public int keyCardinality() {
+        return cache.size();
+    }
+
+    public boolean containsKey(K key) {
+        return cache.containsKey(key);
     }
 }
