@@ -3,7 +3,7 @@ package it.tdd.devclass.cache;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LRUCache<K, V> {
@@ -11,7 +11,7 @@ public class LRUCache<K, V> {
     @Setter
     private int capacity;
 
-    Map<K,V> cache = new HashMap<>();
+    Map<K,V> cache = new LinkedHashMap<>();
 
     public void add(K k, V v) {
         cache.put(k,v);
