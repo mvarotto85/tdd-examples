@@ -5,10 +5,12 @@ import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class LRUCache<K, V> {
 
     private final int capacity;
+    private AtomicLong counter = new AtomicLong(0);
 
     Map<K,V> cache = new HashMap<>();
     Map<K,Long> lastUseTime = new HashMap<>();
@@ -21,7 +23,7 @@ public class LRUCache<K, V> {
 
     public void add(K k, V v) {
         cache.put(k,v);
-        lastUseTime.put(k,now());
+        lastUseTime.put(k, nextSequence());
         lastUseTime.entrySet().stream()
                 .sorted((e1,e2) -> -1 * e1.getValue().compareTo(e2.getValue()))
                 .skip(capacity)
@@ -32,13 +34,13 @@ public class LRUCache<K, V> {
                 });
     }
 
-    private Long now() {
-        return LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
+    private Long nextSequence() {
+        return counter.getAndIncrement();
     }
 
     public V get(K k) {
         Optional<V> value = Optional.ofNullable(cache.get(k));
-        value.ifPresent((v) -> lastUseTime.put(k,now()));
+        value.ifPresent((v) -> lastUseTime.put(k, nextSequence()));
         return value.orElse(null);
     }
 
