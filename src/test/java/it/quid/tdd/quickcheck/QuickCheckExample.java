@@ -5,10 +5,12 @@ import com.pholser.junit.quickcheck.When;
 import com.pholser.junit.quickcheck.generator.InRange;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 import it.quid.tdd.Calculator;
+import javafx.util.Pair;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 @RunWith(JUnitQuickcheck.class)
@@ -54,6 +56,15 @@ public class QuickCheckExample {
         Calculator calculator = new Calculator();
         calculator.add(number);
         assertEquals(calculator.getResult(), number);
+    }
+
+    @Property(trials = 2000)
+    public void integerDivisionTest(
+                                    @InRange(minInt = -100, maxInt = 100) int a,
+                                    @InRange(minInt = -100, maxInt = 100)int b) {
+
+        Pair<Integer, Integer> res = Calculator.integerDivision(a, b);
+        assertEquals(a, (res.getKey() * b + res.getValue()) );
     }
 
 }

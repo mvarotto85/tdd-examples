@@ -1,5 +1,7 @@
 package it.quid.tdd;
 
+import javafx.util.Pair;
+
 public class Calculator {
  
     int valueDisplayed;
@@ -14,5 +16,9 @@ public class Calculator {
  
     public int getResult() {
         return this.valueDisplayed;
+    }
+
+    public static Pair<Integer,Integer> integerDivision(int a, int b){
+        return new Pair<>(a / b, a % b);
     }
 }
