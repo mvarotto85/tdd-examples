@@ -16,4 +16,9 @@ public class StringCalculatorTest {
         assertEquals(new Integer(5),Calculator.add("5"));
     }
 
+    @Test
+    public void shouldReturnSumWhenReceiveTwoCommaSeparatedNumbers() {
+        assertEquals(new Integer(15),Calculator.add("10,5"));
+
+    }
 }
