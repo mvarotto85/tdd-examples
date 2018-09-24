@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class Calculator {
+    public static final int MAX_SUPPORTED_INPUT_VALUE = 1000;
     private static String[] NUMBER_SEPARATOR = {",","\n"};
     private static String INTERNAL_SEPARATOR = "SEPARATOR_FOR_INTERNAL_PORPOUSE_" + UUID.randomUUID() + "_SEPARATOR_END";
 
@@ -20,7 +21,8 @@ public class Calculator {
 
         return Arrays.stream(expression.split(INTERNAL_SEPARATOR))
                 .map(Calculator::convertToInt)
-                .peek(n -> checkNotNegative(n))
+                .peek(Calculator::checkNotNegative)
+                .filter(n -> n < MAX_SUPPORTED_INPUT_VALUE)
                 .reduce((a,b) -> a + b)
                 .orElse(0);
     }
