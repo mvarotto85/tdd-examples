@@ -31,4 +31,10 @@ public class StringCalculatorTest {
     public void shouldReturnSumWhenReceiveThreeCommaSeparatedNumbers() {
         assertEquals(new Integer(22),Calculator.add("10,5,7"));
     }
+
+    @Test(expected = NegativeNumberException.class)
+    public void shouldThrowExceptionWhenInputContainsNegativeNumbers() {
+        Calculator.add("10,-3,98,-1");
+
+    }
 }
