@@ -21,4 +21,14 @@ public class StringCalculatorTest {
         assertEquals(new Integer(15),Calculator.add("10,5"));
 
     }
+
+    @Test
+    public void shouldReturnSumWhenReceiveTwoNewLineSeparatedNumbers() {
+        assertEquals(new Integer(15),Calculator.add("10\n5"));
+    }
+
+    @Test
+    public void shouldReturnSumWhenReceiveThreeCommaSeparatedNumbers() {
+        assertEquals(new Integer(22),Calculator.add("10,5,7"));
+    }
 }
