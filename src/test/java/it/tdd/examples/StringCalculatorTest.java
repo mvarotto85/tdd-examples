@@ -41,4 +41,11 @@ public class StringCalculatorTest {
     public void shouldIgnoreNumbersGreaterOrEqualsTo1000() {
         assertEquals(new Integer(15), Calculator.add("1,9,1500,1000,5"));
     }
+
+    @Test
+    public void shouldBeAbleToDefineCustomSeparatorAsSingleCharElement(){
+        assertEquals(new Integer(20), Calculator.add("//#\n10#5#2,3"));
+    }
+
+
 }

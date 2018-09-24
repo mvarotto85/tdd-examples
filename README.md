@@ -11,5 +11,4 @@ Implement a string calculator that follows the following rules:
 7. Numbers greater than 1000 are ignored
 8. A single char delimiter can be defined on the first line (e.g. //# for a ‘#’ as the delimiter)
 9. A multi char delimiter can be defined on the first line (e.g. //[###] for ‘###’ as the delimiter)
-10. Many single or multi-char delimiters can be defined (each wrapped in square brackets)
 
