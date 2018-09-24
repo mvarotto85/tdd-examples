@@ -18,6 +18,8 @@ public class Calculator {
         if (StringUtils.isEmpty(expression) )
             return 0;
 
+        String originalExp = expression + "";
+
         final String customSeparator = extractCustomSeparators(expression);
 
         Optional.ofNullable(customSeparator)
@@ -27,7 +29,7 @@ public class Calculator {
         expression = expression.replace("//"+ customSeparator,"");
 
         for (String s : NUMBER_SEPARATOR) {
-            expression = expression.replaceAll(s, INTERNAL_SEPARATOR);
+            expression = expression.replace(s, INTERNAL_SEPARATOR);
         }
 
         return Arrays.stream(expression.split(INTERNAL_SEPARATOR))
@@ -55,7 +57,12 @@ public class Calculator {
     }
 
     private static Integer convertToInt(String value) {
-        return Integer.parseInt(value);
+        try {
+            return Integer.parseInt(value);
+        }catch (Exception e){
+            System.out.println("Error converting value!");
+            return 0;
+        }
     }
 
 
