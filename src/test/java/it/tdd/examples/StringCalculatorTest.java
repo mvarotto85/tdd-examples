@@ -15,4 +15,5 @@ public class StringCalculatorTest {
     public void shouldReturnInputValueWhenReceiveASingleNumber() {
         assertEquals(new Integer(5),Calculator.add("5"));
     }
+
 }
