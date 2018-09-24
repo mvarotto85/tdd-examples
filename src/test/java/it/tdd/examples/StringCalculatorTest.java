@@ -35,6 +35,10 @@ public class StringCalculatorTest {
     @Test(expected = NegativeNumberException.class)
     public void shouldThrowExceptionWhenInputContainsNegativeNumbers() {
         Calculator.add("10,-3,98,-1");
+    }
 
+    @Test
+    public void shouldIgnoreNumbersGreaterOrEqualsTo1000() {
+        assertEquals(new Integer(15), Calculator.add("1,9,1500,1000,5"));
     }
 }

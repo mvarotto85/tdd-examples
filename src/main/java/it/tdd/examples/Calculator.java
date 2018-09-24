@@ -20,8 +20,15 @@ public class Calculator {
 
         return Arrays.stream(expression.split(INTERNAL_SEPARATOR))
                 .map(Calculator::convertToInt)
+                .peek(n -> checkNotNegative(n))
                 .reduce((a,b) -> a + b)
                 .orElse(0);
+    }
+
+    private static void checkNotNegative(Integer n) throws NegativeNumberException {
+        if (n < 0)
+            throw new NegativeNumberException();
+
     }
 
     private static Integer convertToInt(String value) {
